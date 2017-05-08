@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "whitelist": {
+            "description": "whitelist of sites to allow",
+            "type": "string"
+        }
+    }
+}
