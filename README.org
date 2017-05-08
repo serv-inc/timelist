@@ -12,7 +12,7 @@
      "3rdparty": {
          "extensions": {
              "iplmogomomicjamihdpekpgcefblbnfk": {
-                 "whitelist": "(youtube\\.com)"
+                 "whitelist": "(google.*newtab|youtube\\.com)"
              }
          }
      }
