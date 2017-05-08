@@ -1,0 +1,19 @@
+* timelist
+  Blocks everything except whitelist.
+** Managed Policy
+   To modify the list of allowed sites, you need to set a managed
+   policy. See
+   https://www.chromium.org/administrators/configuring-policy-for-extensions.
+
+   On Linux, f.ex. you can add the following to your
+   =/etc/chromium/policies/managed/config.json=
+
+   #+BEGIN_SRC js
+     "3rdparty": {
+         "extensions": {
+             "iplmogomomicjamihdpekpgcefblbnfk": {
+                 "whitelist": "(youtube\\.com)"
+             }
+         }
+     }
+   #+END_SRC
