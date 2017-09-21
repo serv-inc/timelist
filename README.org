@@ -1,5 +1,10 @@
 * timelist
   Blocks everything except whitelist.
+** Versions
+*** 0.2.0
+**** Lacked 
+     - real settings support
+     - blockpage showing which page was blocked
 ** Managed Policy
    To modify the list of allowed sites, you need to set a managed
    policy. See
