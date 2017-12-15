@@ -1,6 +1,11 @@
 * timelist
   Blocks everything except whitelist.
+
+[[https://chrome.google.com/webstore/detail/jsguardian/iplmogomomicjamihdpekpgcefblbnfk][https://img.shields.io/chrome-web-store/v/iplmogomomicjamihdpekpgcefblbnfk.svg]]
 ** Versions
+*** 0.2.1
+**** Failed
+     to open vanilla chrome:newtab on Google Chrome
 *** 0.2.0
 **** Lacked 
      - real settings support

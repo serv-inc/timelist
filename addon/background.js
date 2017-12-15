@@ -5,26 +5,33 @@
 /* globals getSettings */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
+let _cache;
+// todo: comment this function out
+function whitelistRegExp() {
+  if ( ! _cache ) {
+    _cache = RegExp(getSettings().whitelist +"|^((chrome|moz)(|-extension)):\\/");
+  }
+  return _cache;
+}
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if ( "url" in changeInfo ) {
     checkTab(tab);
-//    if ( ! getSettings().whitelistRegExp.test(changeInfo.url) ) {    
-//      setBlockPage(tabId, changeInfo.url);
-//    }
   }
 });
 
 getSettings().addOnChangedListener("whitelist", () => {
+  _cache = null;
   chrome.tabs.query(null, (tab) => {
     checkTab(tab);
   });
 });
 
 function checkTab(tab) {
-  if ( ! getSettings().whitelistRegExp.test(tab.url) ) {    
+  if ( ! whitelistRegExp().test(tab.url) ) {
     setBlockPage(tab.id, tab.url);
   }
-};
+}
                                    
 //some codup jsguardian
 function setBlockPage(tabId, blockedUrl) {
