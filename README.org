@@ -3,6 +3,10 @@
 
 [[https://chrome.google.com/webstore/detail/jsguardian/iplmogomomicjamihdpekpgcefblbnfk][https://img.shields.io/chrome-web-store/v/iplmogomomicjamihdpekpgcefblbnfk.svg]]
 ** Versions
+*** 0.3.0
+**** Lacked
+     - time-based blocking
+     - multiple block sets
 *** 0.2.1
 **** Failed
      to open vanilla chrome:newtab on Google Chrome
@@ -16,14 +20,23 @@
    https://www.chromium.org/administrators/configuring-policy-for-extensions.
 
    On Linux, f.ex. you can add the following to your
-   =/etc/chromium/policies/managed/config.json=
+   =/etc/chromium/policies/managed/config.json= (or another file in
+   that directory).
 
    #+BEGIN_SRC js
      "3rdparty": {
-         "extensions": {
-             "iplmogomomicjamihdpekpgcefblbnfk": {
-                 "whitelist": "(google.*newtab|youtube\\.com)"
-             }
+       "extensions": {
+         "iplmogomomicjamihdpekpgcefblbnfk": {
+           "whitelist": "(google|youtube\\.com)",
+           "blocks": [ {
+           "whitelist": "google",
+           "starttime": "0800",
+           "endtime": "1500"
+           } ]
          }
+       }
      }
    #+END_SRC
+
+   would allow only addresses containing /google/ and /youtube/ From
+   08:00 to 15:00, /youtube/ would be blocked as well.

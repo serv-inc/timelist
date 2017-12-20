@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
     "name": "timelist",
-    "description": "Block all sites except those on whitelist.",
-    "version": "0.2.1",
+    "description": "Block all sites except those on whitelists.",
+    "version": "0.3.0",
 
     "icons": { "128": "clipboard-list-solid.png" },
 
