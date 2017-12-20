@@ -29,9 +29,9 @@
          "iplmogomomicjamihdpekpgcefblbnfk": {
            "whitelist": "(google|youtube\\.com)",
            "blocks": [ {
-           "whitelist": "google",
-           "starttime": "0800",
-           "endtime": "1500"
+             "whitelist": "google",
+             "starttime": "0800",
+             "endtime": "1500"
            } ]
          }
        }
