@@ -1,11 +1,11 @@
 * timelist
-  Blocks everything except whitelists. Heeds storage.managed settings.
+  Blocks everything except sites on whitelists. Heeds storage.managed settings.
 
 [[https://chrome.google.com/webstore/detail/jsguardian/iplmogomomicjamihdpekpgcefblbnfk][https://img.shields.io/chrome-web-store/v/iplmogomomicjamihdpekpgcefblbnfk.svg]]
 ** Versions
 *** 0.3.1
 **** Failed
-     - list the block set if the URL contained a =&=
+     - to list the block set if the URL contained a =&=
 *** 0.3.0
 **** Lacked
      - time-based blocking
