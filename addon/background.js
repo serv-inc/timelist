@@ -7,7 +7,6 @@
 
 // optimize: check listen to onchange, replace whitelistRegExp &c
 let _blockCache;
-let _cache;
 
 /** @return regexp from element, with default pages allowed */
 function _buildRegExp(element) {
@@ -66,10 +65,7 @@ function setBlockPage(tabId, blockedUrl, index) {
 
 
 function whitelistRegExp() {
-  if ( ! _cache ) {
-    _cache = _buildRegExp(getSettings().whitelist);
-  }
-  return _cache;
+  return _buildRegExp(getSettings().whitelist);
 }
 
 
@@ -94,7 +90,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 /** main: listens to settings change */
 getSettings().addOnChangedListener("whitelist", () => {
-  _cache = null;
   chrome.tabs.query({}, (tab) => {
     checkTab(tab);
   });
