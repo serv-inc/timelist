@@ -1,21 +1,27 @@
 {
-    "manifest_version": 2,
-    "name": "timelist",
-    "description": "Block all sites except those on whitelists.",
-    "version": "0.3.2",
+  "manifest_version": 2,
+  "name": "timelist",
+  "description": "Block all sites except those on whitelists.",
+  "version": "0.3.3",
+  "author": "serv-inc",
+  "homepage_url": "https://github.com/serv-inc/timelist",
+  "short_name": "Whitelist pages with time",
+  "applications": {
+    "gecko": { "id": "timewhitelist" }
+  },
 
-    "icons": { "128": "clipboard-list-solid.png" },
+  "icons": { "128": "clipboard-list-solid.png" },
 
-    "permissions": [
-        "tabs",
-        "storage"
-    ],
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
 
-    "background": {
-      "scripts": ["settings.js", "background.js"]
-    },
+  "background": {
+    "scripts": ["settings.js", "background.js"]
+  },
 
-    "storage": {
-        "managed_schema": "schema.json"
-    }
+  "storage": {
+    "managed_schema": "schema.json"
+  }
 }
