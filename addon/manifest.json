@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "timewhitelist",
   "description": "Block all sites except those on whitelists.",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "author": "serv-inc",
   "homepage_url": "https://github.com/serv-inc/timelist",
   "short_name": "Whitelist pages with time",
