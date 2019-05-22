@@ -1,12 +1,12 @@
 "use strict";
 /* jshint esversion: 6, strict: global */
-/* globals document */
+/* globals document, URLSearchParams, window */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
-var params = document.location.search.slice(1).split('&');
+let params = new URLSearchParams(window.location.search);
 // page
-document.querySelector("#page").innerText = decodeURIComponent(params[0]);
+document.querySelector("#page").innerText = params.get("page");
 // block set
-if (params[1] !== "-1") {
-  document.querySelector("#blockset").innerText = decodeURIComponent(params[1]);
+if (params.has("index")) {
+  document.querySelector("#blockset").innerText = params.get("index");
 }
