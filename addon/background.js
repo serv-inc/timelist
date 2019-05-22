@@ -1,8 +1,6 @@
 "use strict";
-/* jshint esversion: 6, strict: global */
-/* jshint laxbreak: true */
-/* globals chrome */
-/* globals getSettings */
+/* jshint esversion: 6, strict: global, laxbreak: true */
+/* globals chrome, getSettings, URLSearchParams */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
 // optimize: check listen to onchange, replace whitelistRegExp &c
@@ -10,7 +8,7 @@ let _blockCache;
 
 /** @return regexp from element, with default pages allowed */
 function _buildRegExp(element) {
-  return RegExp(element +"|^(chrome|moz)(|-extension):", "i");
+  return RegExp(element +"|^(about|chrome|moz)(|-extension):", "i");
 }
 
 
@@ -44,6 +42,9 @@ class TimeBlock {
 
 
 function checkTab(tab) {
+  if ( tab.url === undefined ) {
+    return;
+  }
   if ( ! whitelistRegExp().test(tab.url) ) {
     setBlockPage(tab.id, tab.url, -1);
   }
@@ -55,12 +56,14 @@ function checkTab(tab) {
 }
 
 
-//some codup jsguardian
+//some codup jsguardian and ytb (params)
 function setBlockPage(tabId, blockedUrl, index) {
+  var params = new URLSearchParams();
+  params.append("page", blockedUrl);
+  params.append("index", index);
   chrome.tabs.update(tabId,
 		     {'url': chrome.extension.getURL('blockpage.html')
-                      + '?' + encodeURIComponent(blockedUrl)
-                      + '&' + index});
+                      + '?' + params.toString()});
 }
 
 
@@ -90,13 +93,13 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 /** main: listens to settings change */
 getSettings().addOnChangedListener("whitelist", () => {
-  chrome.tabs.query({}, (tab) => {
-    checkTab(tab);
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach(tab => checkTab(tab));
   });
 });
 getSettings().addOnChangedListener("blocks", () => {
   _blockCache = null;
-  chrome.tabs.query({}, (tab) => {
-    checkTab(tab);
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach(tab => checkTab(tab));
   });
 });
