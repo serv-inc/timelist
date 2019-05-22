@@ -3,6 +3,8 @@
 
 [[https://chrome.google.com/webstore/detail/jsguardian/iplmogomomicjamihdpekpgcefblbnfk][https://img.shields.io/chrome-web-store/v/iplmogomomicjamihdpekpgcefblbnfk.svg]]
 ** Versions
+*** 0.4.x
+**** Lacked Firefox installation
 *** 0.3.2
 **** Failed
      - to reload if cache was initialized too early
