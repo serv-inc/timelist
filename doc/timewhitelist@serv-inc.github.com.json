@@ -1,0 +1,8 @@
+{
+    "name": "timewhitelist@serv-inc.github.com",
+    "description": "ignored",
+    "type": "storage",
+    "data": {
+	"whitelist": "youtube.com|addons.mozilla.org|blog.mozilla.org|coursera.org"
+    }
+}
