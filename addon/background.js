@@ -18,7 +18,6 @@ function _buildRegExp(element) {
     return RegExp(element +"|^(about|chrome|moz)(|-extension):", "i");
 }
 
-
 /** @return Date from "HHMM" time string */
 function _initTime(timestring) {
     const out = new Date();
@@ -27,17 +26,15 @@ function _initTime(timestring) {
     return out;
 }
 
-
 /** short-lived block **/
 class TimeBlock {
-    constructor(checks, start, end) {
+    constructor(checks, start, end, blacklist) {
         this._checker = _buildRegExp(checks);
         this._starttime = _initTime(start);
         this._endtime = _initTime(end);
+        this._blacklist = RegExp(blacklist, "i");
     }
 
-
-    // todo: unit test this
     /** @return true iff outside of time or URL ok as of whitelist */
     is_ok(url) {
         return ( new Date() < this._starttime ||
@@ -47,13 +44,10 @@ class TimeBlock {
     }
 }
 
-
+/** checks tab if defined blocks allow its url */
 function checkTab(tab) {
     if ( tab.url === undefined ) {
         return;
-    }
-    if ( ! whitelistRegExp().test(tab.url) ) {
-        setBlockPage(tab.id, tab.url, -1);
     }
     blocks().forEach((block, index) => {
         if ( ! block.is_ok(tab.url) ) {
@@ -61,6 +55,7 @@ function checkTab(tab) {
         }
     });
 }
+
 
 
 // some codup jsguardian and ytb (params)
@@ -75,18 +70,17 @@ function setBlockPage(tabId, blockedUrl, index) {
     );
 }
 
-
-function whitelistRegExp() {
-    return _buildRegExp(getSettings().whitelist);
-}
-
-
+/** initializes and returns TimeBlock array */
 function blocks() {
     if ( ! _blockCache ) {
         _blockCache = [];
         if ( typeof getSettings().blocks !== "undefined" ) {
             getSettings().blocks.forEach((el) => {
-                _blockCache.push(new TimeBlock(el.whitelist, el.starttime, el.endtime));
+              _blockCache.push(new TimeBlock(
+                el.whitelist,
+                el.starttime,
+                el.endtime,
+                el.blacklist || "(?!x)x"));  // default: blacklist allows all
             });
         }
     }

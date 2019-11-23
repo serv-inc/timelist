@@ -1,10 +1,6 @@
 {
   "type": "object",
   "properties": {
-    "whitelist": {
-      "description": "whitelist of sites to allow, otherwise blocked whole day",
-      "type": "string"
-    },
     "blocks": {
       "description": "list of other block objects with time and regex",
       "type": "array",
@@ -12,7 +8,7 @@
         "type": "object",
         "properties": {
           "whitelist": {"type": "string"},
-          "blacklist": {"type": "string"},
+          "blacklist": {"type": "string", "description": "all allowed if not provided"},
           "starttime": {"type": "string"},
           "endtime": {"type": "string"}
         }
