@@ -1,0 +1,32 @@
+{
+  "name": "timelist",
+  "version": "0.6.0",
+  "description": "* timelist   Blocks everything except sites on whitelists. Heeds storage.managed settings.",
+  "main": "none",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serv-inc/timelist.git"
+  },
+  "keywords": [
+    "browser",
+    "extension",
+    "block",
+    "time"
+  ],
+  "author": "",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/serv-inc/timelist/issues"
+  },
+  "homepage": "https://github.com/serv-inc/timelist#readme",
+  "devDependencies": {
+    "eslint": "^6.7.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}

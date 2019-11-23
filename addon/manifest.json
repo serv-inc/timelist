@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
   "name": "timewhitelist",
-  "description": "Block all sites except those on whitelists.",
-  "version": "0.5.0",
+  "description": "Block all sites except those on whitelists. Blacklist removes sites from whitelist.",
+  "version": "0.6.0",
   "author": "serv-inc",
   "homepage_url": "https://github.com/serv-inc/timelist",
-  "short_name": "Whitelist pages with time",
+  "short_name": "block urls with wall time",
   "applications": {
     "gecko": { "id": "timewhitelist@serv-inc.github.com" }
   },

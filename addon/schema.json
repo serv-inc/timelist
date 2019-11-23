@@ -12,6 +12,7 @@
         "type": "object",
         "properties": {
           "whitelist": {"type": "string"},
+          "blacklist": {"type": "string"},
           "starttime": {"type": "string"},
           "endtime": {"type": "string"}
         }
