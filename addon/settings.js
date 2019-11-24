@@ -1,6 +1,5 @@
 "use strict";
 /* jshint esversion: 6, strict: global, loopfunc: true, laxbreak: true */
-/* globals chrome */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
 /* OPTIONS CODE */

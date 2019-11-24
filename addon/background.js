@@ -1,6 +1,6 @@
 "use strict";
 /* jshint esversion: 6, strict: global, laxbreak: true */
-/* globals chrome, getSettings */
+/* globals getSettings */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
 /** main: listens to browsing */
@@ -38,8 +38,8 @@ class TimeBlock {
     /** @return true iff outside of time or URL ok as of whitelist */
     is_ok(url) {
         return ( new Date() < this._starttime ||
-             new Date() > this._endtime ||
-             this._checker.test(url)
+                 new Date() > this._endtime ||
+                 this._checker.test(url)
         );
     }
 }
@@ -66,7 +66,7 @@ function setBlockPage(tabId, blockedUrl, index) {
     chrome.tabs.update(
         tabId,
         {"url": chrome.extension.getURL("blockpage.html") +
-        "?" + params.toString()}
+         "?" + params.toString()}
     );
 }
 
@@ -76,14 +76,13 @@ function blocks() {
         _blockCache = [];
         if ( typeof getSettings().blocks !== "undefined" ) {
             getSettings().blocks.forEach((el) => {
-              _blockCache.push(new TimeBlock(
-                el.whitelist,
-                el.starttime,
-                el.endtime,
-                el.blacklist || "(?!x)x"));  // default: blacklist allows all
+                _blockCache.push(new TimeBlock(
+                    el.whitelist,
+                    el.starttime,
+                    el.endtime,
+                    el.blacklist || "(?!x)x"));  // default: blacklist allows all
             });
         }
     }
     return _blockCache;
 }
-
