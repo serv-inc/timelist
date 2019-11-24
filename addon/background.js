@@ -3,6 +3,10 @@
 /* globals getSettings */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
+// default: allow all
+const WHITELIST = ".*";
+const BLACKLIST = "(?!x)x";
+
 /** main: listens to browsing */
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if ( "url" in changeInfo ) {
@@ -24,24 +28,6 @@ function _initTime(timestring) {
     out.setHours(timestring.slice(0, 2));
     out.setMinutes(timestring.slice(2, 4));
     return out;
-}
-
-/** short-lived block **/
-class TimeBlock {
-    constructor(checks, start, end, blacklist) {
-        this._checker = _buildRegExp(checks);
-        this._starttime = _initTime(start);
-        this._endtime = _initTime(end);
-        this._blacklist = RegExp(blacklist, "i");
-    }
-
-    /** @return true iff outside of time or URL ok as of whitelist */
-    is_ok(url) {
-        return ( new Date() < this._starttime ||
-                 new Date() > this._endtime ||
-                 this._checker.test(url)
-        );
-    }
 }
 
 /** checks tab if defined blocks allow its url */
@@ -77,12 +63,31 @@ function blocks() {
         if ( typeof getSettings().blocks !== "undefined" ) {
             getSettings().blocks.forEach((el) => {
                 _blockCache.push(new TimeBlock(
-                    el.whitelist,
+                    el.whitelist || WHITELIST,
                     el.starttime,
                     el.endtime,
-                    el.blacklist || "(?!x)x"));  // default: blacklist allows all
+                    el.blacklist || BLACKLIST));
             });
         }
     }
     return _blockCache;
 }
+
+/** short-lived block **/
+class TimeBlock {
+    constructor(checks, start, end, blacklist) {
+        this..whitelist = _buildRegExp(checks);
+        this._starttime = _initTime(start);
+        this._endtime = _initTime(end);
+        this._blacklist = RegExp(blacklist, "i");
+    }
+
+    /** @return true iff outside of time or URL ok as of whitelist */
+    is_ok(url) {
+        return ( new Date() < this._starttime ||
+                 new Date() > this._endtime ||
+                 this.whitelist.test(url) && ! this.blacklist.test(url)
+        );
+    }
+}
+
