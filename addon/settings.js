@@ -1,5 +1,5 @@
 "use strict";
-/* jshint esversion: 6, strict: global, loopfunc: true, laxbreak: true */
+/* exported getSettings */
 // licensed under the MPL 2.0 by (github.com/serv-inc)
 
 /* OPTIONS CODE */
