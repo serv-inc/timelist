@@ -76,7 +76,7 @@ function blocks() {
 /** short-lived block **/
 class TimeBlock {
     constructor(checks, start, end, blacklist) {
-        this..whitelist = _buildRegExp(checks);
+        this._whitelist = _buildRegExp(checks);
         this._starttime = _initTime(start);
         this._endtime = _initTime(end);
         this._blacklist = RegExp(blacklist, "i");
@@ -86,7 +86,7 @@ class TimeBlock {
     is_ok(url) {
         return ( new Date() < this._starttime ||
                  new Date() > this._endtime ||
-                 this.whitelist.test(url) && ! this.blacklist.test(url)
+                 this._whitelist.test(url) && ! this._blacklist.test(url)
         );
     }
 }
