@@ -2,7 +2,7 @@ module.exports = {
     "env": {
         "browser": true,
         "es6": true,
-        "webextensions": true
+        "webextensions": true,
     },
     "extends": "eslint:recommended",
     "globals": {
@@ -13,6 +13,7 @@ module.exports = {
         "ecmaVersion": 2018
     },
     "rules": {
+        "no-prototype-builtins": "off",
         "indent": [
             "error",
             4
