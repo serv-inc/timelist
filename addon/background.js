@@ -6,6 +6,7 @@
 // default: allow all
 const WHITELIST = ".*";
 const BLACKLIST = "(?!x)x";
+const NEVER = /^(about|chrome|moz)(|-extension):/;
 
 /** main: listens to browsing */
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -17,10 +18,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 let _blockCache;
 
 
-/** @return regexp from element, with default pages allowed */
-function _buildRegExp(element) {
-    return RegExp(element +"|^(about|chrome|moz)(|-extension):", "i");
-}
+
 
 /** @return Date from "HHMM" time string */
 function _initTime(timestring) {
@@ -32,7 +30,7 @@ function _initTime(timestring) {
 
 /** checks tab if defined blocks allow its url */
 function checkTab(tab) {
-    if ( tab.url === undefined ) {
+    if ( tab.url === undefined || NEVER.test(tab.url) ) {
         return;
     }
     blocks().forEach((block, index) => {
@@ -41,7 +39,6 @@ function checkTab(tab) {
         }
     });
 }
-
 
 
 // some codup jsguardian and ytb (params)
@@ -73,10 +70,9 @@ function blocks() {
     return _blockCache;
 }
 
-/** short-lived block **/
 class TimeBlock {
-    constructor(checks, start, end, blacklist) {
-        this._whitelist = _buildRegExp(checks);
+    constructor(whitelist, start, end, blacklist) {
+        this._whitelist = RegExp(whitelist, "i");
         this._starttime = _initTime(start);
         this._endtime = _initTime(end);
         this._blacklist = RegExp(blacklist, "i");
@@ -90,4 +86,3 @@ class TimeBlock {
         );
     }
 }
-
