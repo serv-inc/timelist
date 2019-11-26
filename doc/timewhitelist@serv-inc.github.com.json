@@ -3,6 +3,10 @@
     "description": "ignored",
     "type": "storage",
     "data": {
-	"whitelist": "youtube.com|addons.mozilla.org|blog.mozilla.org|coursera.org"
+      "blocks": [ {
+             "whitelist": "duckduckgo.com|youtube.com",
+             "starttime": "0000",
+             "endtime": "2359"
+      } ]
     }
 }

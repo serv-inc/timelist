@@ -3,6 +3,8 @@
 
 [[https://chrome.google.com/webstore/detail/jsguardian/iplmogomomicjamihdpekpgcefblbnfk][https://img.shields.io/chrome-web-store/v/iplmogomomicjamihdpekpgcefblbnfk.svg]]
 ** Versions
+*** 0.6.0: Lacked blacklist
+- settings no longer has default part, only blocks
 *** 0.5.0: Always wrongly blocked active tab on site update
 *** 0.4.x: Lacked Firefox installation
 *** 0.3.2
@@ -27,7 +29,7 @@
    policy. See
    https://www.chromium.org/administrators/configuring-policy-for-extensions.
 
-   On Linux, f.ex. you can add the following to your
+   E.g. on Linux, you can add the following to your
    =/etc/chromium/policies/managed/config.json= (or another file in
    that directory).
 
@@ -35,9 +37,12 @@
      "3rdparty": {
        "extensions": {
          "iplmogomomicjamihdpekpgcefblbnfk": {
-           "whitelist": "(google|youtube\\.com)",
            "blocks": [ {
-             "whitelist": "google",
+             "whitelist": "duckduckgo.com|youtube.com",
+             "starttime": "0000",
+             "endtime": "2359"
+           }, {
+             "whitelist": "duckduckgo.com",
              "starttime": "0800",
              "endtime": "1500"
            } ]
@@ -46,7 +51,7 @@
      }
    #+END_SRC
 
-   This would generally allow only addresses containing /google/ and
-   /youtube/.
+   This would generally allow only addresses containing /duckduckgo.com/ and
+   /youtube.com/.
 
-   From 08:00 to 15:00, /youtube/ would be blocked as well.
+   From 08:00 to 15:00, /youtube.com/ would be blocked as well.
