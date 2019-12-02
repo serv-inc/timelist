@@ -3,6 +3,8 @@
 
 [[https://chrome.google.com/webstore/detail/jsguardian/iplmogomomicjamihdpekpgcefblbnfk][https://img.shields.io/chrome-web-store/v/iplmogomomicjamihdpekpgcefblbnfk.svg]]
 ** Versions
+(chrome web store forbid versions > 0.3.2, so only [[https://addons.mozilla.org]] for now)
+*** 0.7.0: Lacked install and update triggers
 *** 0.6.0: Lacked blacklist
 - settings no longer has default part, only blocks
 *** 0.5.0: Always wrongly blocked active tab on site update
