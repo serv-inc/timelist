@@ -95,9 +95,9 @@ class TimeBlock {
   }
 }
 
+// on start, run once
 chrome.tabs.query({}, (tabs) => {
   tabs.forEach(tab => {
-    console.log(JSON.stringify(tab));
-    //    checkTab(tab));
+    checkTab(tab);
   });
 });
