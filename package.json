@@ -1,6 +1,6 @@
 {
   "name": "timelist",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "* timelist   Blocks everything except sites on whitelists. Heeds storage.managed settings.",
   "main": "none",
   "directories": {
