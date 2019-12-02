@@ -6,5 +6,5 @@ const params = new URLSearchParams(window.location.search);
 document.querySelector("#page").innerText = params.get("page");
 // block set
 if (params.has("index")) {
-    document.querySelector("#blockset").innerText = params.get("index");
+  document.querySelector("#blockset").innerText = params.get("index");
 }
